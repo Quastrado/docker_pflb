@@ -1,0 +1,16 @@
+version: "3.3"
+
+services: 
+    ubuntu_1:
+        image: ubuntu
+        command: touch /my_file/change_me.txt
+        volumes:
+            - ${PWD}/:/my_file
+
+    ubuntu_2:
+        image: ubuntu
+        command: chmod 777 /my_file/change_me.txt
+        volumes:
+            - ${PWD}/:/my_file
+        depends_on: 
+            - ubuntu_1
